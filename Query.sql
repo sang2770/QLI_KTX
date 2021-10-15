@@ -17,3 +17,8 @@ set SL_DANG_O=  dbo.count_sl(N'P001')
 update TB_Phong
 set SL_NGUOI_MAX=8
 
+alter table tb_nhanvien
+add hinhanh nvarchar(20) null
+
+alter table tb_sinhvien
+add hinhanh nvarchar(20) null
