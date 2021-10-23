@@ -108,8 +108,6 @@ function InsertSV() {
       "', N'" +
       GioiTinh[Math.floor(Math.random() * 2)] +
       "', N'" +
-      MaKhoa[MK] +
-      "', N'" +
       MaLop[ML] +
       "',N'" +
       MaHD +
@@ -119,7 +117,7 @@ function InsertSV() {
     MaHD = "HD0";
   }
 }
-// InsertSV();
+InsertSV();
 
 function insertHD() {
   let result = "";
@@ -168,4 +166,4 @@ function insertHD() {
   }
 }
 
-insertHD();
+// insertHD();

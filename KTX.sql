@@ -93,6 +93,11 @@ create table TB_LOP
 (
 	MaLop	nvarchar(20)	CONSTRAINT MALOP PRIMARY KEY,
     TenLop	nvarchar(30)	not null,
+	MaKhoa  nvarchar(20)	not null,
+	CONSTRAINT FK_ML_MK FOREIGN KEY(MaKhoa)
+	REFERENCES TB_KHOA(MaKhoa)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 )
 
 -- Tạo bảng Khoa
@@ -112,15 +117,10 @@ create table TB_SINHVIEN
 	NgaySinh    datetime		not null,
 	QueQuan		nvarchar(30)	not null,
 	GioiTinh	nvarchar(20)	not null,
-	MaKhoa		nvarchar(20)	not null,
 	MaLop		nvarchar(20)	not null,
 	MaHopDong	nvarchar(20)	not null,
 	CONSTRAINT FK_SV_ML FOREIGN KEY(MaLop)
 	REFERENCES TB_LOP(MaLop)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE,
-	CONSTRAINT FK_SV_MK FOREIGN KEY(MaKhoa)
-	REFERENCES TB_KHOA(MaKhoa)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 	CONSTRAINT FK_SV_HD FOREIGN KEY(MaHopDong)
