@@ -69,25 +69,15 @@ CREATE TABLE TB_TAI_KHOAN
 					REFERENCES TB_NHANVIEN(MANV),
 )
 go
-
--- Tạo bảng hợp đồng
- create table TB_HOPDONG
+-- Tạo bảng Khoa
+create table TB_KHOA
 (
-	MaHopDong	nvarchar(20)	CONSTRAINT MAHOPDONG PRIMARY KEY,
-	NgayLap    datetime		not null,
-	ThoiHan		int			not null,
-	Ma_Phong		nvarchar(20)	not null,
-	MANV	nvarchar(20)	not null,
-	CONSTRAINT FK_HD_MP FOREIGN KEY(Ma_Phong)
-	REFERENCES TB_PHONG(Ma_Phong)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE,
-	CONSTRAINT FK_HD_NV FOREIGN KEY(MANV)
-	REFERENCES TB_NHANVIEN(MANV)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE,
-
+	MaKhoa	nvarchar(20)	CONSTRAINT MAKHOA PRIMARY KEY,
+    TenKhoa	nvarchar(30)	not null,
 )
+
+go
+
 -- Tạo bảng Lớp
 create table TB_LOP
 (
@@ -98,13 +88,6 @@ create table TB_LOP
 	REFERENCES TB_KHOA(MaKhoa)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
-)
-
--- Tạo bảng Khoa
-create table TB_KHOA
-(
-	MaKhoa	nvarchar(20)	CONSTRAINT MAKHOA PRIMARY KEY,
-    TenKhoa	nvarchar(30)	not null,
 )
 
 --TAO BẢNG SV
@@ -118,17 +101,36 @@ create table TB_SINHVIEN
 	QueQuan		nvarchar(30)	not null,
 	GioiTinh	nvarchar(20)	not null,
 	MaLop		nvarchar(20)	not null,
-	MaHopDong	nvarchar(20)	not null,
 	CONSTRAINT FK_SV_ML FOREIGN KEY(MaLop)
 	REFERENCES TB_LOP(MaLop)
 	ON DELETE CASCADE
-	ON UPDATE CASCADE,
-	CONSTRAINT FK_SV_HD FOREIGN KEY(MaHopDong)
-	REFERENCES TB_HOPDONG(MaHopDong)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE,
+	ON UPDATE CASCADE
 )
 GO
+-- Tạo bảng hợp đồng
+ create table TB_HOPDONG
+(
+	MaHopDong	nvarchar(20)	CONSTRAINT MAHOPDONG PRIMARY KEY,
+	NgayLap    datetime		not null,
+	ThoiHan		int			not null,
+	Ma_Phong		nvarchar(20)	not null,
+	MANV	nvarchar(20)	not null,
+	MaSV		nvarchar(20) not null,
+	CONSTRAINT FK_HD_MP FOREIGN KEY(Ma_Phong)
+	REFERENCES TB_PHONG(Ma_Phong)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT FK_HD_NV FOREIGN KEY(MANV)
+	REFERENCES TB_NHANVIEN(MANV)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT FK_HD_SV FOREIGN KEY(MaSV)
+	REFERENCES TB_SINHVIEN(MaSV)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+
+)
+
 
 GO
 --Tạo bảng trả phòng

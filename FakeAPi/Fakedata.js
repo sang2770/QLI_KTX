@@ -75,14 +75,14 @@ function InsertSV() {
       MaSV += randomsv;
     }
 
-    let randomhd = i + 1;
-    if (randomhd < 10) {
-      MaHD += "00" + randomhd;
-    } else if (randomhd < 100) {
-      MaHD += "0" + randomhd;
-    } else {
-      MaHD += randomhd;
-    }
+    // let randomhd = i + 1;
+    // if (randomhd < 10) {
+    //   MaHD += "00" + randomhd;
+    // } else if (randomhd < 100) {
+    //   MaHD += "0" + randomhd;
+    // } else {
+    //   MaHD += randomhd;
+    // }
     let MK = Math.floor(Math.random() * sizeKhoa);
     let ML = 0;
 
@@ -109,27 +109,34 @@ function InsertSV() {
       GioiTinh[Math.floor(Math.random() * 2)] +
       "', N'" +
       MaLop[ML] +
-      "',N'" +
-      MaHD +
       "')<br/>";
     document.write(result);
     MaSV = "SV0";
     MaHD = "HD0";
   }
 }
-InsertSV();
+// InsertSV();
 
 function insertHD() {
   let result = "";
-  let MaHD = "HD00";
+  let MaHD = "HD0";
   let NgayThang = "";
   let MaPhong = "";
   let j = 1;
+  let MaSV = "SV0";
   let randomIndexPhong = 7;
   for (let i = 0; i < 150; i++) {
-    MaHD += i + 1;
-
     let randomMaNV = Math.floor(Math.random() * 5) + 1;
+
+    let randomsv = i + 1;
+    if (randomsv < 10) {
+      MaSV += "00" + randomsv;
+    } else if (randomsv < 100) {
+      MaSV += "0" + randomsv;
+    } else {
+      MaSV += randomsv;
+    }
+
     let MaNV = "NV0";
     if (randomMaNV < 10) {
       MaNV += "00" + randomMaNV;
@@ -139,6 +146,14 @@ function insertHD() {
       MaNV += randomMaNV;
     }
 
+    let randomhd = i + 1;
+    if (randomhd < 10) {
+      MaHD += "00" + randomhd;
+    } else if (randomhd < 100) {
+      MaHD += "0" + randomhd;
+    } else {
+      MaHD += randomhd;
+    }
     let Han = Math.floor(Math.random() * 2) + 2;
     NgayThang += Math.floor(Math.random() * 2) + 2020 + "/";
     NgayThang += Math.floor(Math.random() * 12) + 1 + "/";
@@ -159,11 +174,14 @@ function insertHD() {
       MaPhong +
       "', N'" +
       MaNV +
+      "', N'" +
+      MaSV +
       "')<br/>";
     document.write(result);
-    MaHD = "HD00";
+    MaHD = "HD0";
     NgayThang = "";
+    MaSV = "SV0";
   }
 }
 
-// insertHD();
+insertHD();
