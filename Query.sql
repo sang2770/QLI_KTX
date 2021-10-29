@@ -11,9 +11,24 @@ begin
 return @sl
 end
 -- cap nhat so luong dang o
-update TB_Phong set SL_DANG_O=Temp.SL from (select MA_PHONG, count(Ma_Phong)as SL from TB_HOPDONG group by MA_PHONG )as Temp where TB_Phong.MA_PHONG=Temp.Ma_Phong
-update TB_Phong
-set SL_DANG_O=  dbo.count_sl(N'P001')
+go
+declare cc cursor for select TB_Phong.MA_PHONG from tb_phong
+open cc
+declare @ma nvarchar(20)
+fetch next from cc into @ma
+while(@@FETCH_STATUS=0)
+begin
+	declare @sl int
+	set @sl=dbo.count_sl(@ma)
+	update TB_Phong set SL_DANG_O=@sl where tb_phong.ma_phong=@ma
+	fetch next from cc into @ma
+end
+close cc
+deallocate cc
+
+
+go
+
 
 update TB_Phong
 set SL_NGUOI_MAX=8
@@ -24,7 +39,28 @@ add hinhanh nvarchar(20) null
 alter table tb_sinhvien
 add hinhanh nvarchar(20) null
 
+Alter table tb_thiet_bi 
+add hinhanh nvarchar(20) 
+go
+update TB_THIET_BI 
+set tb_thiet_bi.hinhanh=N'giuong.jpg'
+where TEN_TB=N'GIƯỜNG'
 
+update TB_THIET_BI 
+set tb_thiet_bi.hinhanh=N'den.jpg'
+where TEN_TB=N'ĐÈN'
+
+update TB_THIET_BI 
+set tb_thiet_bi.hinhanh=N'quat.jpg'
+where TEN_TB=N'QUẠT'
+
+update TB_THIET_BI 
+set tb_thiet_bi.hinhanh=N'dieuhoa.jpg'
+where TEN_TB=N'ĐIỀU HÒA'
+
+update TB_THIET_BI 
+set tb_thiet_bi.hinhanh=N'nonglanh.jpg'
+where TEN_TB=N'NÓNG LẠNH'
 -- trigger Xóa hợp đồng cập nhật lại số sinh viên trong phòng
 create trigger DeleteHD_UpdatePhong on TB_HOPDONG
 for delete
@@ -34,4 +70,14 @@ begin
 	select @MaPhong=Ma_Phong from deleted
 	update TB_Phong set SL_DANG_O=SL_DANG_O-1 where MA_PHONG=@MaPhong
 end
-select * from TB_Phong
+
+
+--trigger cap nhat lai sau khi them or sua traphong
+ create trigger them_traphong on tb_tra_phong
+ for insert,update
+ as
+ begin
+	declare @masv nvarchar(20)
+	select @masv =masv from inserted	
+	delete from TB_HOPDONG where MaSV=@masv
+ end
