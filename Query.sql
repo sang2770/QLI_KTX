@@ -73,11 +73,26 @@ end
 
 
 --trigger cap nhat lai sau khi them or sua traphong
- create trigger them_traphong on tb_tra_phong
- for insert,update
+ Alter trigger them_traphong on tb_tra_phong
+ for insert,update,delete
  as
  begin
-	declare @masv nvarchar(20)
-	select @masv =masv from inserted	
-	delete from TB_HOPDONG where MaSV=@masv
+	declare @count1 int , @count2 int,@masv nvarchar(20)
+	set @count1=0
+	set @count2=0
+	select @count1=count(*) from inserted
+	select @count2=count(*) from deleted
+	if(@count1>0)
+	begin
+		
+		select @masv =masv from inserted	
+		delete from TB_HOPDONG where MaSV=@masv
+		set @count2=0
+	end
+	if(@count2>0)
+	begin
+		
+		select @masv =masv from deleted
+		delete from tb_sinhvien where masv=@masv
+	end
  end
