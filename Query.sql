@@ -41,6 +41,8 @@ add hinhanh nvarchar(20) null
 
 Alter table tb_thiet_bi 
 add hinhanh nvarchar(20) 
+
+
 go
 update TB_THIET_BI 
 set tb_thiet_bi.hinhanh=N'giuong.jpg'
@@ -96,3 +98,12 @@ end
 		delete from tb_sinhvien where masv=@masv
 	end
  end
+
+ go
+ --tao cot trang thai
+ Alter table tb_chiphi
+add trangthai nvarchar(20) 
+
+go
+update TB_CHIPHI
+set trangthai=N'Đã Thanh Toán'
