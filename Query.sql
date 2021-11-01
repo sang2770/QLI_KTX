@@ -1,5 +1,5 @@
 ﻿use QLI_KTX
-
+--Hung
 create function count_sl(@maphong nvarchar(20))
 returns int
 as
@@ -63,19 +63,8 @@ where TEN_TB=N'ĐIỀU HÒA'
 update TB_THIET_BI 
 set tb_thiet_bi.hinhanh=N'nonglanh.jpg'
 where TEN_TB=N'NÓNG LẠNH'
--- trigger Xóa hợp đồng cập nhật lại số sinh viên trong phòng
-create trigger DeleteHD_UpdatePhong on TB_HOPDONG
-for delete
-as
-begin
-	declare @MaPhong nvarchar(20)
-	select @MaPhong=Ma_Phong from deleted
-	update TB_Phong set SL_DANG_O=SL_DANG_O-1 where MA_PHONG=@MaPhong
-end
-
-
 --trigger cap nhat lai sau khi them or sua traphong
- Alter trigger them_traphong on tb_tra_phong
+ create trigger them_traphong on tb_tra_phong
  for insert,update,delete
  as
  begin
@@ -107,3 +96,9 @@ add trangthai nvarchar(20)
 go
 update TB_CHIPHI
 set trangthai=N'Đã Thanh Toán'
+
+
+--Sang
+
+update TB_NHANVIEN set hinhanh=N'Layer 1.jpg'
+update TB_SINHVIEN set hinhanh=N'Layer 1.jpg'
