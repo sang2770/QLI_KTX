@@ -650,30 +650,30 @@ INSERT INTO TB_TAI_KHOAN VALUES(N'TK05',N'ducNV0005@em.utc.edu.vn',N'gdyb21LQTcI
 
 GO
 -- chèn bảng Khoa
-insert into TB_KHOA values(N'K000001',N' CNTT') ;
-insert into TB_KHOA values(N'K000002',N' KTVT') ;
-insert into TB_KHOA values(N'K000003',N' CK') ;
+insert into TB_KHOA values(N'K000001',N'CNTT') ;
+insert into TB_KHOA values(N'K000002',N'KTVT') ;
+insert into TB_KHOA values(N'K000003',N'CK');
 -- chèn bảng lớp
-insert into TB_LOP values(N'L000001',N' CNTT1', N'K000001') ;
-insert into TB_LOP values(N'L000002',N' CNTT2', N'K000001') ;
-insert into TB_LOP values(N'L000003',N' CNTT3', N'K000001') ;
-insert into TB_LOP values(N'L000004',N' CNTT4', N'K000001') ;
-insert into TB_LOP values(N'L000005',N' CNTT5', N'K000001') ;
-insert into TB_LOP values(N'L000006',N' CNTT6', N'K000001') ;
-insert into TB_LOP values(N'L000007',N' KTVT1',N'K000002') ;
-insert into TB_LOP values(N'L000008',N' KTVT2',N'K000002') ;
-insert into TB_LOP values(N'L000009',N' KTVT3',N'K000002') ;
-insert into TB_LOP values(N'L000010',N' KTVT4',N'K000002') ;
-insert into TB_LOP values(N'L000011',N' KTVT5',N'K000002') ;
-insert into TB_LOP values(N'L000012',N' KTVT6',N'K000002') ;
-insert into TB_LOP values(N'L000013',N' KTVT7',N'K000002') ;
-insert into TB_LOP values(N'L000014',N' CK1',N'K000003') ;
-insert into TB_LOP values(N'L000015',N' CK2',N'K000003') ;
-insert into TB_LOP values(N'L000016',N' CK3',N'K000003') ;
-insert into TB_LOP values(N'L000017',N' CK4',N'K000003') ;
-insert into TB_LOP values(N'L000018',N' CK5',N'K000003') ;
-insert into TB_LOP values(N'L000019',N' CK6',N'K000003') ;
-insert into TB_LOP values(N'L000020',N' CK7',N'K000003') ;
+insert into TB_LOP values(N'L000001',N'CNTT1', N'K000001') ;
+insert into TB_LOP values(N'L000002',N'CNTT2', N'K000001') ;
+insert into TB_LOP values(N'L000003',N'CNTT3', N'K000001') ;
+insert into TB_LOP values(N'L000004',N'CNTT4', N'K000001') ;
+insert into TB_LOP values(N'L000005',N'CNTT5', N'K000001') ;
+insert into TB_LOP values(N'L000006',N'CNTT6', N'K000001') ;
+insert into TB_LOP values(N'L000007',N'KTVT1',N'K000002') ;
+insert into TB_LOP values(N'L000008',N'KTVT2',N'K000002') ;
+insert into TB_LOP values(N'L000009',N'KTVT3',N'K000002') ;
+insert into TB_LOP values(N'L000010',N'KTVT4',N'K000002') ;
+insert into TB_LOP values(N'L000011',N'KTVT5',N'K000002') ;
+insert into TB_LOP values(N'L000012',N'KTVT6',N'K000002') ;
+insert into TB_LOP values(N'L000013',N'KTVT7',N'K000002') ;
+insert into TB_LOP values(N'L000014',N'CK1',N'K000003') ;
+insert into TB_LOP values(N'L000015',N'CK2',N'K000003') ;
+insert into TB_LOP values(N'L000016',N'CK3',N'K000003') ;
+insert into TB_LOP values(N'L000017',N'CK4',N'K000003') ;
+insert into TB_LOP values(N'L000018',N'CK5',N'K000003') ;
+insert into TB_LOP values(N'L000019',N'CK6',N'K000003') ;
+insert into TB_LOP values(N'L000020',N'CK7',N'K000003') ;
 
 
 -- chèn bảng sinh viên
