@@ -102,3 +102,52 @@ set trangthai=N'Đã Thanh Toán'
 
 update TB_NHANVIEN set hinhanh=N'Layer 1.jpg'
 update TB_SINHVIEN set hinhanh=N'Layer 1.jpg'
+
+alter function TK_SVDKI(@Nam int)
+returns table
+as
+return 
+select 
+sum(case when month(NgayLap) = 1 then 1 else 0 end) as Thang1,
+sum(case when month(NgayLap) = 2 then 1 else 0 end) as Thang2,
+sum(case when month(NgayLap) = 3 then 1 else 0 end) as Thang3,
+sum(case when month(NgayLap) = 4 then 1 else 0 end) as Thang4,
+sum(case when month(NgayLap) = 5 then 1 else 0 end) as Thang5,
+sum(case when month(NgayLap) = 6 then 1 else 0 end) as Thang6,
+sum(case when month(NgayLap) = 7 then 1 else 0 end) as Thang7,
+sum(case when month(NgayLap) = 8 then 1 else 0 end) as Thang8,
+sum(case when month(NgayLap) = 9 then 1 else 0 end) as Thang9,
+sum(case when month(NgayLap) = 10 then 1 else 0 end) as Thang10,
+sum(case when month(NgayLap) = 11 then 1 else 0 end) as Thang11,
+sum(case when month(NgayLap) =  12 then 1 else 0 end) as Thang12,
+from TB_HOPDONG where YEAR(NgayLap)=@Nam;
+
+select * from TK_SVDKI(2021)
+
+-- Trigger thêm hợp đồng thì cập nhật lại số người trong phòng
+
+select * from TB_HOPDONG
+
+alter trigger UpdateSL_Phong on TB_HOPDONG
+for insert, delete, update
+as
+begin
+	declare @MaPhong nvarchar(50), @SL1 int =0 , @SL2 int =0
+	if(exists (select * from inserted))
+	begin 
+		select @MaPhong= Ma_Phong from inserted
+		set @SL1=1;
+	end
+	if(exists (select * from deleted))
+	begin
+		select @MaPhong =Ma_Phong from deleted
+		set @SL2=1;
+	end
+	update TB_Phong set SL_DANG_O=SL_DANG_O+@SL1-@SL2 where MA_PHONG=@MaPhong
+
+end
+
+select * from TB_Phong
+
+select * from TB_SINHVIEN
+select SL_DANG_O, SL_NGUOI_MAX from TB_Phong where MA_PHONG='P001'
