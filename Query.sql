@@ -96,3 +96,9 @@ end
 		delete from tb_sinhvien where masv=@masv
 	end
  end
+ 
+ GO
+ALTER TABLE TB_NHANVIEN
+ADD Trangthai NVARCHAR(20) NULL
+GO
+UPDATE TB_NHANVIEN SET Trangthai = N'Đang làm'
