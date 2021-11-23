@@ -88,6 +88,7 @@ where TEN_TB=N'NÓNG LẠNH'
 	end
  end
 
+
  go
  --tao cot trang thai
  Alter table tb_chiphi
@@ -151,3 +152,11 @@ select * from TB_Phong
 
 select * from TB_SINHVIEN
 select SL_DANG_O, SL_NGUOI_MAX from TB_Phong where MA_PHONG='P001'
+
+ 
+ GO
+ALTER TABLE TB_NHANVIEN
+ADD Trangthai NVARCHAR(20) NULL
+GO
+UPDATE TB_NHANVIEN SET Trangthai = N'Đang làm'
+
